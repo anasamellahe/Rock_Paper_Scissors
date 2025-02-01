@@ -8,10 +8,7 @@ function getHumanChoice()
         let choice = prompt("Enter your choice (rock, paper, scissors): ");
         choice = (choice)? choice.toLowerCase(): null;
         if (choice == "rock"  || choice == "paper" || choice == "scissors")
-        {
-            console.log('hellos anas');
             return choice;
-        }
         alert("Invalid choice! Please enter rock, paper, or scissors: ");
     } 
 }
@@ -46,7 +43,10 @@ function playRound (humanChoice, computerChoice)
 function playGame()
 {
     for (let i = 0; i < 5; i++)
+    {
         playRound(getHumanChoice(), getComputerChoice());
+        console.log("humanScore = " + humanScore + " | " + "computerScore = " + computerScore);
+    }
     if (computerScore == humanScore)
         console.log("It's a draw! No winner this time.");
     else
