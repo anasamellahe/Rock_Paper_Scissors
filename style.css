@@ -97,27 +97,14 @@ body
     font-size: 1000%;
 }
 
-/* #win
+#message
 {
-    position: absolute;
-    top: 50%;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    text-wrap: wrap;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    min-height: 100px;
-    padding: 10px;
-    font-size: 50px;
-} */
-
+    font-size:xx-large;
+}
 
 #popup
 {
-    visibility: hidden;
+    visibility: visible;
     display: flex;
     position: absolute;
     width: 100%;
@@ -131,9 +118,9 @@ body
 #win
 {
     box-shadow: 0px 0px 50px 0px black;
-    max-width: 400px;
+    max-width: 550px;
     width: 100%;
-    min-height: 200px;
+    min-height: 250px;
     border-radius: 10px;
     text-wrap: wrap;
     box-sizing: border-box;
