@@ -1,33 +1,17 @@
-let humanScore = 0;
-let computerScore = 0;
-
-function playGame()
-{
-    for (let i = 0; i < 5; i++)
-    {
-        playRound(getHumanChoice(), getComputerChoice());
-        console.log("humanScore = " + humanScore + " | " + "computerScore = " + computerScore);
-    }
-    if (computerScore == humanScore)
-        console.log("It's a draw! No winner this time.");
-    else
-        console.log(computerScore < humanScore ? "You win!  Well played!" : "You lose! Better luck next time!");
-    computerScore = 0;
-    humanScore = 0;
-}
-// playGame();
-
 let uiPlayerScore =  document.querySelector("#player_score .number");
 let uiBotScore = document.querySelector("#bot_score .number");
+let popUp = document.querySelector("#popup");
 let PlayerScore = 0;
 let BotScore = 0;
+let numberOfRounds = 0;
 
-function getPlayerChoice()
+function setupEvent()
 {
+    console.log("hello anas");
     let a = document.querySelectorAll(".card");
     for (let i = 0; i < a.length; i++)
-    {  
-        a[i].addEventListener("click", (e) => play(getComputerChoice(), e.target.parentElement.id));
+    { 
+        a[i].addEventListener("click", playGame);
     }
 }
 function getComputerChoice()
@@ -36,6 +20,20 @@ function getComputerChoice()
     return choice[Math.floor(Math.random() * 3)];
 }
 
+
+
+function playGame(humanChoice)
+{
+    popUp.style.visibility = "visible";;
+    playRound(humanChoice.target.parentElement.id, getComputerChoice());
+    console.log("PlayerScore = " + PlayerScore + " | " + "BotScore = " + BotScore);
+    if (BotScore == 5 || PlayerScore == 5)
+    {
+        console.log(BotScore < PlayerScore ? "You win!  Well played!" : "You lose! Better luck next time!");
+        BotScore = 0;
+        PlayerScore = 0;
+    }
+}
 
 function playRound (humanChoice, computerChoice)
 {
@@ -62,3 +60,6 @@ function playRound (humanChoice, computerChoice)
     uiBotScore.textContent = BotScore;
     uiPlayerScore.textContent = PlayerScore;
 }
+
+console.log("start");
+setupEvent();
