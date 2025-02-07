@@ -1,45 +1,6 @@
 let humanScore = 0;
 let computerScore = 0;
-function getHumanChoice()
-{
-    
-    while (1)
-    {
-        let choice = prompt("Enter your choice (rock, paper, scissors): ");
-        choice = (choice)? choice.toLowerCase(): null;
-        if (choice == "rock"  || choice == "paper" || choice == "scissors")
-            return choice;
-        alert("Invalid choice! Please enter rock, paper, or scissors: ");
-    } 
-}
-function getComputerChoice()
-{
-    let choice = ["rock" , "paper", "scissors"];
-    return choice[Math.floor(Math.random() * 3)];
-}
-function playRound (humanChoice, computerChoice)
-{
-    if ( computerChoice == "rock" && humanChoice == "paper" || humanChoice == "rock" && computerChoice == "paper")
-    {
-        console.log(((humanChoice == "paper") ? "You win!"  : "Oops! You lost this round") + " paper covers rock");
-        humanScore += (humanChoice == "paper") ;
-        computerScore += (computerChoice == "paper");
-    }
-    else if (computerChoice == "scissors" && humanChoice == "rock" || humanChoice == "scissors" && computerChoice == "rock")
-    {
-        console.log(((humanChoice == "rock") ? "You win!"  : "Oops! You lost this round") + " Rock crushes scissors");
-        humanScore += (humanChoice == "rock") ;
-        computerScore += (computerChoice == "rock");
-    }
-    else if (computerChoice == "paper" && humanChoice == "scissors" || humanChoice == "paper" && computerChoice == "scissors" )
-    {
-        console.log(((humanChoice == "scissors") ? "You win!"  : "Oops! You lost this round") + " scissors cuts paper");
-        humanScore += (humanChoice == "scissors") ;
-        computerScore += (computerChoice == "scissors");
-    }
-    else if (humanChoice == computerChoice)
-        console.log("It's a draw! No winner this time.");
-}
+
 function playGame()
 {
     for (let i = 0; i < 5; i++)
@@ -54,4 +15,50 @@ function playGame()
     computerScore = 0;
     humanScore = 0;
 }
-playGame();
+// playGame();
+
+let uiPlayerScore =  document.querySelector("#player_score .number");
+let uiBotScore = document.querySelector("#bot_score .number");
+let PlayerScore = 0;
+let BotScore = 0;
+
+function getPlayerChoice()
+{
+    let a = document.querySelectorAll(".card");
+    for (let i = 0; i < a.length; i++)
+    {  
+        a[i].addEventListener("click", (e) => play(getComputerChoice(), e.target.parentElement.id));
+    }
+}
+function getComputerChoice()
+{
+    let choice = ["rock" , "paper", "scissors"];
+    return choice[Math.floor(Math.random() * 3)];
+}
+
+
+function playRound (humanChoice, computerChoice)
+{
+    if ( computerChoice == "rock" && humanChoice == "paper" || humanChoice == "rock" && computerChoice == "paper")
+    {
+        console.log(((humanChoice == "paper") ? "You win!"  : "Oops! You lost this round") + " paper covers rock");
+        PlayerScore += (humanChoice == "paper") ;
+        BotScore += (computerChoice == "paper");
+    }
+    else if (computerChoice == "scissors" && humanChoice == "rock" || humanChoice == "scissors" && computerChoice == "rock")
+    {
+        console.log(((humanChoice == "rock") ? "You win!"  : "Oops! You lost this round") + " Rock crushes scissors");
+        PlayerScore += (humanChoice == "rock") ;
+        BotScore += (computerChoice == "rock");
+    }
+    else if (computerChoice == "paper" && humanChoice == "scissors" || humanChoice == "paper" && computerChoice == "scissors" )
+    {
+        console.log(((humanChoice == "scissors") ? "You win!"  : "Oops! You lost this round") + " scissors cuts paper");
+        PlayerScore += (humanChoice == "scissors") ;
+        BotScore += (computerChoice == "scissors");
+    }
+    else if (humanChoice == computerChoice)
+        console.log("It's a draw! No winner this time.");
+    uiBotScore.textContent = BotScore;
+    uiPlayerScore.textContent = PlayerScore;
+}
